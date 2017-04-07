@@ -13,8 +13,8 @@ pipeline:
   publish:
     image: plugins/docker
     repo: ncodefresh/demochat
-    username: ncodefresh
-    password: intercoredockerhub2
+    username: ${DOCKERHUB_USERNAME}
+    password: ${DOCKERHUB_PASSWORD}
     tags: [ "latest", "1" ]
     when:
       branch: master
@@ -22,7 +22,7 @@ pipeline:
 
   slack:
     image: plugins/slack
-    webhook: https://hooks.slack.com/services/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
+    webhook: https://hooks.slack.com/services/
     channel: drone-migration
     username: drone
     template: >
