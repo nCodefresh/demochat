@@ -1,0 +1,25 @@
+pipeline:
+  build:
+    image: node:latest
+    environment:
+      - DEBUG=*
+    commands:
+      - npm install
+      - npm install -g mocha
+      - npm install -g istanbul
+      - npm install -g gulp
+      - npm install -g debug
+
+  publish:
+    image: plugins/docker
+    repo: ncodefresh/demochat
+    username: ncodefresh
+    password: intercoredockerhub2
+    when:
+      branch: master
+
+services:
+  postgres:
+    image: postgres:9.4.5
+    environment:
+      - POSTGRES_USER=myapp
