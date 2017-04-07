@@ -18,6 +18,7 @@ pipeline:
     when:
       branch: master
 
+
 services:
   postgres:
     image: postgres:9.4.5
