@@ -15,8 +15,10 @@ pipeline:
     repo: ncodefresh/demochat
     username: ncodefresh
     password: intercoredockerhub2
+    tags: [ "latest", "1" ]
     when:
       branch: master
+      event: push
 
   notify:
     slack:
