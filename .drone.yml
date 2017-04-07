@@ -15,12 +15,14 @@ pipeline:
     repo: ncodefresh/demochat
     username: ncodefresh
     password: intercoredockerhub2
+    tags: [ latest, 1, 1.0 ]
     when:
       branch: master
 
-
-services:
-  postgres:
-    image: postgres:9.4.5
-    environment:
-      - POSTGRES_USER=myapp
+  notify:
+    slack:
+      webhook_url: https://hooks.slack.com/services/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
+      channel: drone-migration
+      username: drone
+      template: >
+        build #{{ build.number }} finished with a {{ build.status }} status
