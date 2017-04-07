@@ -22,6 +22,11 @@ pipeline:
 
   slack:
     image: plugins/slack
-    webhook_url: https://hooks.slack.com/services/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
+    webhook: https://hooks.slack.com/services/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
     channel: drone-migration
     username: drone
+    template: >
+      *{{ build.status }}* <{{ build.link }}|{{ repo.owner }}/{{ repo.name }}#{{ build.commit }}> ({{ build.ref }}) by {{ build.author }}
+    when:
+      event: [ push, pull_request ]
+      status: [ success, failure ]
