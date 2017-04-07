@@ -1,27 +1,26 @@
-pipeline:
-  build:
-    image: node:latest
-    environment:
-      - DEBUG=*
-    commands:
-      - npm install
-      - npm install -g mocha
-      - npm install -g istanbul
-      - npm install -g gulp
-      - npm install -g debug
+build:
+  image: node:latest
+  environment:
+    - DEBUG=*
+  commands:
+    - npm install
+    - npm install -g mocha
+    - npm install -g istanbul
+    - npm install -g gulp
+    - npm install -g debug
 
-  publish:
-    image: plugins/docker
-    repo: ncodefresh/demochat
-    username: ncodefresh
-    password: intercoredockerhub2
-    tags: [ "latest", "1" ]
-    when:
-      branch: master
-      event: push
+publish:
+  image: plugins/docker
+  repo: ncodefresh/demochat
+  username: ncodefresh
+  password: intercoredockerhub2
+  tags: [ "latest", "1" ]
+  when:
+    branch: master
+    event: push
 
-  notify:
-    image: plugins/slack
+notify:
+  slack:
     webhook_url: https://hooks.slack.com/services/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
     channel: drone-migration
     username: drone
